@@ -81,7 +81,7 @@ init_amplitude = 1
 init_frequency = 261
 init_offset = 0
 
-for i in range(10):
+for i in range(30):
     find_windows(init_frequency, i)
 
 # Create the figure and the line that we will manipulate
@@ -110,7 +110,7 @@ offset_slider = Slider(
     ax=axoffset,
     label="Zero-crossing offset",
     valmin=0,
-    valmax=10,
+    valmax=30,
     valinit=0,
     valstep=1,
 )
@@ -130,7 +130,7 @@ amp_slider = Slider(
     ax=axamp,
     label="Amplitude",
     valmin=0,
-    valmax=10,
+    valmax=3,
     valinit=init_amplitude,
     orientation="vertical",
 )
