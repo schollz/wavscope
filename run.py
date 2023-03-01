@@ -6,10 +6,16 @@ from os.path import dirname, join as pjoin
 from scipy.io import wavfile
 import scipy.io
 
+import random
+import sys
 
-data_dir = pjoin(dirname(scipy.io.__file__), "tests", "data")
-wave_filename = pjoin(data_dir, "test-44100Hz-2ch-32bit-float-be.wav")
-wave_filename = "pulse.wav"
+
+try:
+    wave_filename = sys.argv[1]
+except:
+    print("python run.py [filename]")
+    sys.exit(0)
+
 wave_samplerate, data = wavfile.read(wave_filename)
 wave_num_channels = data.shape[1]
 wave_duration = data.shape[0] / wave_samplerate
@@ -147,7 +153,8 @@ def update(val):
     ax.set_xlim(min(x) / wave_samplerate, max(x) / wave_samplerate)
     ax.set_ylim(-1, 1)
     fig.canvas.draw()
-    fig.canvas.flush_events()
+    # fig.canvas.flush_events()
+    return True
 
 
 # register the update function with each slider
