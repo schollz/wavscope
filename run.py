@@ -9,7 +9,7 @@ import scipy.io
 
 data_dir = pjoin(dirname(scipy.io.__file__), "tests", "data")
 wave_filename = pjoin(data_dir, "test-44100Hz-2ch-32bit-float-be.wav")
-wave_filename = "pulse-mod.wav"
+wave_filename = "pulse.wav"
 wave_samplerate, data = wavfile.read(wave_filename)
 wave_num_channels = data.shape[1]
 wave_duration = data.shape[0] / wave_samplerate
@@ -81,6 +81,7 @@ for i in range(10):
 # Create the figure and the line that we will manipulate
 fig, ax = plt.subplots()
 x, y = f(init_frequency, 0, 0, 1)
+ax.axhline(y=0.0, color="#ccc", linestyle="--")
 (line,) = ax.plot(x, y, lw=2)
 ax.set_xlabel("Time [s]")
 ax.set_autoscale_on(False)
@@ -145,7 +146,6 @@ def update(val):
     ax.legend(handles=[line])
     ax.set_xlim(min(x) / wave_samplerate, max(x) / wave_samplerate)
     ax.set_ylim(-1, 1)
-    ax.axhline(y=0.0, color="k", linestyle="--")
     fig.canvas.draw()
     fig.canvas.flush_events()
 
